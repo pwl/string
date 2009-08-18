@@ -1,0 +1,279 @@
+\documentclass[
+a4paper,% paper dimensions
+10pt,% font size
+titlepage,% print title on a single page
+%twocolumn,% text in two columns on a single page
+twoside% two sided printing (page numbers on outer edge)
+]{article}
+
+
+% \pagestyle{myheadings}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amscd}
+% \usepackage[polish]{babel}
+% \usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{hyperref}
+% \usepackage{graphicx}
+% \usepackage{titlesec}
+% \usepackage{afterpage}
+% \usepackage[section]{placeins}
+
+
+\begin{document}
+
+\subsection{Recursive formulation}
+We start with the equation
+\begin{gather}
+  \label{eq:wave0}
+  (\rho+m\delta(x-L))\partial_{tt}\psi=\partial_{xx}\psi,
+\end{gather}
+which after the substitutions
+\begin{gather}
+  \label{eq:subs0}
+  x\rightarrow x'=\frac{m}{\rho} x         \\
+  t\rightarrow t'=\frac{m}{\sqrt{2\rho}} t \\
+  L'=\frac{\rho L}{m}
+\end{gather}
+becomes
+\begin{gather}
+  \label{eq:wave0}
+  (1+\delta(x-L))\partial_{tt}\psi=\frac{1}{2}\partial_{xx}\psi,
+\end{gather}
+with primes omitted, so the problem has one parameter (which can be
+also shown using dimensional analysis). Futher, the most general
+ansatz for the escaping wave to the right of the point mass is
+\begin{gather}
+  \label{eq:ansatz0}
+  \psi(x,t)=
+  \begin{cases}
+    f(x-t)+g(x+t) & x\in[0,L] \\
+    h(x-t)        & x\ge L,
+  \end{cases}
+\end{gather}
+with conditions
+\begin{gather}
+  \label{eq:boundary}
+  \psi(0,t) = 0\quad\text{zero at the boundary}\\
+  \label{eq:continuity}
+  \psi(L-,t)=\psi(L+,t)\quad\text{continuity}.
+\end{gather}
+which become
+\begin{gather}
+  \label{eq:ansatz0}
+  \psi(x,t)=
+  \begin{cases}
+    -g(t-x)+g(x+t) & x\in[0,L] \\
+    h(x-t)         & x\ge L.
+  \end{cases}\\
+  \label{eq:cont0}
+  -g(t-L)+g(L+t)=h(L-t)\quad\text{continuity}
+\end{gather}
+
+Integrating \eqref{eq:wave0} we obtain
+\begin{gather}
+  \partial_{tt}\psi(L,t)=\frac{1}{2}(\partial_x\psi(L+,t)-\partial_x\psi(L-,t)).
+\end{gather}
+which glues together the solutions from different intervals along with
+the continuity condition \eqref{eq:continuity}.
+
+The preceding statements give rise to the following equation for $g$
+\begin{equation}
+  \begin{split}
+    -g''(t-L)+g''(t+L)&=\frac{1}{2}(h'(L-t)-g'(t-L)-g'(t+L))\\
+    &=\frac{1}{2}(g'(t-L)-g'(t+L)-g'(t-L)-g'(t+L))\\
+    &=-g'(t+L),
+  \end{split}
+\end{equation}
+and after the shift in $t$ and with $T:=2L$ we get
+\begin{gather}
+  g''(t+T)+g'(t+T)=g''(t)
+\end{gather}
+integrating gives us
+\begin{gather}
+  g'(t+T)+g(t+T)=g'(t)+(g'(T)-g'(0)+g(T)).
+\end{gather}
+Adding a constant to $g$ does not change the equations, so we can
+add such constant in order to cancel the $(g'(T)-g'(0)+g(T))$ term,
+and we are then given the final form of equation for $g$
+\begin{gather}
+  \label{eq:dde}
+  g'(t+T)+g(t+T)=g'(t),
+\end{gather}
+which is a kind of delayed differential equation, and for which one
+can iteratively find a solution for arbitrary large times given the
+function values in an interval $[a,a+T]$ where $a$ is an arbitrary
+constant for convinience we shall fix $a=0$. Now we shall introduce a
+family of functions $g_n\in\mathcal{C}([0,T])$ defined as
+\begin{equation}
+    g(t+nT)=g_n(t)\quad t\in[0,T]
+\end{equation}
+so the equation \eqref{eq:rec0} becomes
+\begin{gather}
+  \label{eq:rec0}
+  \begin{split}
+    &g'_{n+1}(t)+g_{n+1}(t)=g'_n(t),\\
+    &g_{n+1}(0)=g_n(T)\quad\text{continuity condition}.\\
+    &\text{with}\quad g_0(t)\quad\text{initial conditions}
+  \end{split}
+\end{gather}
+The above equation can be solved by iteration
+\begin{gather}
+  g_{n+1}(t)=(Lg_n)(t)=g_n(t)-e^{-t}\int_0^t e^s g_n(s)ds+e^{-t}(g_n(T)-g_n(0)).
+\end{gather}
+With $L:\mathcal{C}([0,T])\rightarrow \mathcal{C}([0,T])$. The
+eigenvectors of $L$ are the soultions of the equation \eqref{eq:rec0}
+with $g_{n+1}=\lambda g_n$
+\begin{gather}
+  \lambda(g'_\lambda(t)+g_\lambda(t))=g'_\lambda(t),\\
+  \lambda g_\lambda(0)=g_\lambda(T)\quad\text{quantization}.
+\end{gather}
+from which we obtain
+\begin{gather}
+  g_\lambda(t)=e^{\frac{\lambda}{\lambda+1}t},\\
+  \lambda=e^{\frac{\lambda}{\lambda+1}T}\quad\text{quantization}.
+\end{gather}
+The above quantization for $\lambda$ gives rise to the quasi-normal
+modes of equation \eqref{eq:wave0}.
+
+\subsection{Quasinormal Modes - asymptotic expansion}
+The transcendental equation for $\lambda$ can be written as
+\begin{gather}\label{eq:qm0}
+  \frac{\beta}{\beta-i}=e^{i\beta T}
+\end{gather}
+where $\lambda=\frac{\beta}{\beta-i}$. We shall split $\beta$ into its
+real and imaginary part in the obvious way: $\beta=\Omega+i\Gamma$.
+Taking the absolute value of \eqref{eq:qm0} gives rise to the
+following equation
+\begin{gather}\label{eq:qm1}
+  \frac{\Omega^2+(\Gamma-1)^2}{\Omega^2+\Gamma^2}=e^{2\Gamma T}
+\end{gather}
+Let's assume $\Gamma<0$, then from the equality
+\begin{gather}
+  e^{2\Gamma T}-1=\frac{1-2\Gamma}{\Omega^2+\Gamma^2}
+\end{gather}
+contradiction appears and so we deduce $\Gamma>0$, which in turn leads
+to the fact that $\Gamma<\frac{1}{2}$. From the fact $\Gamma>0$ one
+can conclude that $L$ is bounded, and thus continous on the space spanned
+by its eigenvectors because
+\begin{gather}
+|\lambda|^2=e^{-2\Gamma}<1.
+\end{gather}
+Equation
+\eqref{eq:qm1} can be solved for $\Omega^2$
+\begin{gather}
+  \begin{split}
+    \Omega^2&=\frac{1-2\Gamma-\Gamma^2(e^{2\Gamma T}-1)}{e^{2\Gamma T}-1}\\
+    &=\frac{1}{2\Gamma T}-\frac{2+T}{2T}+\Gamma\frac{T+6}{6}+\mathcal{O}(\Gamma^2).
+  \end{split}
+\end{gather}
+We shall introduce a new parameter $\eta:=\frac{1}{\sqrt{\Gamma}}$ obtaining
+the parametrization $\beta(\eta)$
+\begin{gather}\label{eq:qmparam}
+  \Omega=\frac{1}{\sqrt{2 T}}\eta-\frac{\sqrt{2T}(2+T)}{4T}\frac{1}{\eta}+\mathcal{O}(\eta^{-3}),\\
+  \Gamma=\frac{1}{\eta^2},\\
+  \beta=\frac{i}{\sqrt{2 T}}\eta-\frac{i\sqrt{2T}(2+T)}{4T}\frac{1}{\eta}-\frac{1}{\eta^2}+\mathcal{O}(\eta^{-3})
+\end{gather}
+We should now calculate $g(t)=(L^n h_0)(t-nT)$ for
+\begin{gather}
+  h_0(t)=\sum_\lambda a_\lambda g_\lambda(t).
+\end{gather}
+We have
+\begin{gather}
+  (L^n h_0)(t)=\sum_\lambda \lambda^n a_\lambda g_\lambda(t).
+\end{gather}
+Utilizing quantization condition for $\lambda$ we obtain
+\begin{gather}\label{eq:series}
+  (L^n h_0)(t) =\sum_\lambda a_\lambda e^{\frac{\lambda}{\lambda+1}(t+nT)}
+\end{gather}
+Inserting the \eqref{eq:qmparam} to \eqref{eq:series} yields
+\begin{gather}
+  \begin{split}
+    (L^n h_0)(t-nT) &=\sum_\eta a_{\lambda(\eta)} e^{i\beta(\eta)t}\\
+    &\approx \int^\infty a_{\lambda(\eta)}\exp((ib\eta+\frac{ic}{\eta}-\frac{1}{\eta^2})t)d\eta
+  \end{split}
+\end{gather}
+The remaining problem is the asymptotic form of $a_{\lambda}$ for
+reasonable initial data (which cannot be simply computed using scalar
+product, because eigenvectors are not orthogonal in their current
+form) and integration of the above integral to get energy leak in time
+(see \eqref{eq:enleak}). The integration should be doable using the
+method of steepest descent or some other method for highly oscillatory
+integrands assuming $t\gg 1$. After this the asymptotic expansion in
+time should be easily obtained, and so the energy leak.
+
+% The integration can be done using the method
+% of steepest descent after expanding functions under the integrand as
+% asymptotic series for $t$. Namely introducing the substitutions
+% $f(\eta)=f(\eta_0)-w^2$, where $\eta_0$ is an appropriately chosen
+% saddle point, calculating $\eta(w)$ and $d\eta=\frac{d\eta(w)}{dw}dw$
+% as well as $a_{\lambda(\eta)}$, expanding
+% $a_{\lambda(\eta)}\frac{d\eta}{dw}$ as a series in time obtaining the
+% series of integrals which one shall then calculate term by term. The
+% cructial point is that calculation of integrals is not necessary to
+% obtain the leading term of time dependancy.
+
+
+% We are looking for $(L^ng_0)$ for $n\rightarrow\infty$.
+
+\subsection{Energy}
+The energy of the whole string is given by the functional
+\begin{gather}
+  \begin{split}
+    E(\psi)&=\frac{1}{2}\int_0^\infty dx ((1+\delta(x-L))\psi_t^2+\psi_x^2)\\
+    &=\frac{1}{2}\int_0^L dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\int_L^\infty dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\psi_t^2\bigg|_{x=L}\\
+    &=E_{in}(\psi)+E_{esc}(\psi)
+  \end{split}\\
+  E_{in}(\psi)=\frac{1}{2}\int_0^L dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\psi_t^2\bigg|_{x=L}\\
+  E_{esc}(\psi)=\frac{1}{2}\int_L^\infty dx(\psi_t^2+\psi_x^2)
+\end{gather}
+% The whole energy of the string is conserved so it is enough to find
+% $E_{esc}(\psi)$. Using the relations \eqref{eq:ansatz0} and
+% \eqref{eq:cont0} and \eqref{eq:dde} we obtain
+% \begin{gather}
+%   \begin{split}
+%     E_{esc}(\psi)&=\int_L^\infty dx((g'(t-x+T)-g'(t-x))^2=\int_L^\infty dx(g(t-x+T))^2=\\
+%     &=\sum_{n=0}^\infty\int_{L+nT}^{L+nT+T}dx(g(t-x+T))^2=\\
+%     &=\sum_{n=0}^\infty
+%   \end{split}
+% \end{gather}
+\begin{gather}
+  \begin{split}\label{eq:enleak}
+    \partial_t E_{in}(\psi)&=\int_0^L(\partial_x(\psi_t\psi_x))+\psi_{tt}\psi_t\bigg|_{x=L}=\\
+    &=(\psi_x+\psi_{tt})\psi_t\bigg|_{x=L}=\\
+    &=(g'(t-L)+g'(t+L)-g''(t-L)+g''(t+L))(g'(t+L)-g'(t-L))\\
+    &=(g'(t-L)+g'(t+L)-g'(t+L))(g'(t+L)-g'(t-L))\\
+    &=-g'(t-L)g(t+L)\\
+    &=-(g'(t+L)+g(t+L))g(t+L)\\
+    &=-\frac{1}{2}\partial_tg(t+L)^2-g(t+L)^2
+  \end{split}
+\end{gather}
+So the highest order dependency on $t$ will be the $g(t+L)^2$ term (assuming $g\sim t^{-\alpha}$), so
+we can write that for large times we have
+\begin{gather}
+  \partial_t E_{in}(\psi)\sim~-g^2(t+L)<0
+\end{gather}
+
+% Substituting
+% \begin{gather}
+%   g_n(t)=\frac{1}{\sqrt{2\pi}}\int_{\mathbb{R}}\hat{g_n}(\omega)e^{i\omega t}d\omega
+% \end{gather}
+% one gets
+% \begin{gather}
+%   g_{n+1}(t)=\frac{1}{\sqrt{2\pi}}\int_{\mathbb{R}}\hat{g_n}(\omega)\bigg[
+%   \frac{i\omega}{1+i\omega}e^{i\omega t}+
+%   e^{i\omega T-t}-
+%   \frac{i\omega}{1+i\omega}e^{-(i\omega+1)t}
+%   \bigg]d\omega.
+% \end{gather}
+% by multiplying by $e^{-i\omega't}/\sqrt{2\pi}$ and integrating
+% $\int_0^{T}dt$ (this assumes that $g_n$ is zero everywhere except the
+% interval $[a,a+T]$ where we have chosen $a$ to be $0$) one obtains
+% \begin{gather}
+%   \hat{g_{n+1}}(\omega')=\hat{g_n}(\omega')\frac{i\omega'}{1+i\omega'}+
+%   \frac{1}{2\pi}\int_{\mathbb{R}}\hat{g_n}(\omega)\frac{e^{i\omega T}-e^{-T-iT(\omega'-\omega)}}{1+i\omega'}
+% \end{gather}
+
+\end{document}
