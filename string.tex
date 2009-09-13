@@ -144,16 +144,16 @@ the quasi-normal modes of equation \eqref{eq:wave0}.
 \subsection{Quasinormal Modes - asymptotic expansion}
 The transcendental equation for $\lambda$ can be written as
 \begin{gather}\label{eq:qm0}
-  \frac{\beta}{\beta-i}=e^{i\beta T}
+  \frac{\beta}{\beta+1}=e^{\beta T}
 \end{gather}
-where $\lambda=\frac{\beta}{\beta-i}$. We shall split $\beta$ into its
-real and imaginary part: $\beta=\Omega+i\Gamma$.  Taking the absolute
+where $\lambda=\frac{\beta}{\beta+1}$. We shall split $\beta$ into its
+real and imaginary part: $\beta=i\Omega-\Gamma$.  Taking the absolute
 value of \eqref{eq:qm0} we obtain the following equation
 \begin{gather}\label{eq:qm1}
   \frac{\Omega^2+(\Gamma-1)^2}{\Omega^2+\Gamma^2}=e^{2\Gamma T}
 \end{gather}
 Let's assume $\Gamma<0$, then from the equality
-\begin{gather}
+\begin{gather}\label{eq:g_ineq}
   e^{2\Gamma T}-1=\frac{1-2\Gamma}{\Omega^2+\Gamma^2}
 \end{gather}
 contradiction appears and so we deduce $\Gamma>0$, which in turn leads
@@ -168,18 +168,22 @@ Equation
 \begin{gather}
   \begin{split}
     \Omega^2&=\frac{1-2\Gamma-\Gamma^2(e^{2\Gamma T}-1)}{e^{2\Gamma T}-1}\\
-    &=\frac{1}{2\Gamma T}-\frac{2+T}{2T}+\Gamma\frac{6+T}{6}+\mathcal{O}(\Gamma^2).
+    &=\frac{1}{2\Gamma T}-\frac{2+T}{2T}+\Gamma\frac{6+T}{6}+\mathcal{O}(\Gamma^2),\\
+    \Omega&=\pm(\frac{1}{\sqrt{2T}}\frac{1}{\sqrt{\Gamma}}-\frac{2+T}{2\sqrt{2T}}\sqrt{\Gamma}+\mathcal{O}(\Gamma^{3/2}))
   \end{split}
 \end{gather}
-We shall introduce a new parameter $\eta:=\frac{1}{\sqrt{\Gamma}}\in[\sqrt{2},\infty]$ obtaining
-the parametrization $\beta(\eta)$
-\begin{gather}\label{eq:qmparam}
-  \Gamma=\frac{1}{\eta^2},\\
-  \Omega=\\
-  \pm\sqrt{\frac{\eta^4-2\eta^2-(e^{2T/\eta^2}-1)}{\eta^4(e^{2T/\eta^2}-1)}}=\\
-  \pm(\frac{1}{\sqrt{2 T}}\eta-\frac{\sqrt{2T}(2+T)}{4T}\frac{1}{\eta}+\mathcal{O}(\eta^{-3})),\\
-  i\beta=\pm(\frac{i}{\sqrt{2 T}}\eta-\frac{i\sqrt{2T}(2+T)}{4T}\frac{1}{\eta})-\frac{1}{\eta^2}+\mathcal{O}(\eta^{-3})
-\end{gather}
+We shall introduce a new parameter
+$\eta:=\frac{\sqrt{T}}{2\sqrt{\pi\Gamma}}$ obtaining the
+parametrization $\beta(\eta)$ (the reason for such peculiar
+parametrization will become clear later.
+
+\begin{align}\label{eq:qmparam}
+  \Gamma&=\frac{T}{2\pi^2\eta^2},\\
+  \Omega&=\pm(\frac{\pi}{T}\eta-2(2+T)\pi\frac{1}{\eta}+\mathcal{O}(\eta^{-3}),\\
+  % \pm\sqrt{\frac{\eta^4-2\eta^2-(e^{2T/\eta^2}-1)}{\eta^4(e^{2T/\eta^2}-1)}}=\\
+  % \pm(\frac{1}{\sqrt{2 T}}\eta-\frac{2+T}{2\sqrt{2T}}\frac{1}{\eta}+\mathcal{O}(\eta^{-3})),\\
+  \beta&=\pm i(\frac{\pi}{T}\eta-2(2+T)\pi\frac{1}{\eta})-\frac{T}{2\pi^2\eta^2}+\mathcal{O}(\eta^{-3})
+\end{align}
 We should now calculate $g(t)=(L^n h_0)(t-nT)$ for
 \begin{gather}
   h_0(t)=\sum_\lambda a_\lambda g_\lambda(t).
@@ -195,7 +199,7 @@ Utilizing quantization condition for $\lambda$ we obtain
 Inserting the \eqref{eq:qmparam} to \eqref{eq:series} yields
 \begin{gather}
   \begin{split}
-    (L^n h_0)(t-nT) &=\sum_\eta a_{\lambda(\eta)} e^{i\beta(\eta)t}\\
+    (L^n h_0)(t-nT) &=\sum_\eta a_{\lambda(\eta)} e^{\beta(\eta)t}\\
     &\approx \int_{\eta_0}^\infty a_{\lambda(\eta)}\exp((ib\eta-\frac{ic}{\eta}-\frac{1}{\eta^2})t)d\eta
   \end{split}
 \end{gather}
@@ -224,11 +228,50 @@ time should be easily obtained, and so the energy leak.
 
 \subsection{Eigenvalues of $L$}
 
-Equation
-\begin{gather}\label{eq:beta}
-  \frac{\beta}{\beta-i}=e^{i\beta T}
-\end{gather}
-defines the discrete set ${\beta_i}$ with elements $\beta_i$
+Second equation for $\Omega$ and $\Gamma$ is given by
+\begin{equation}
+  \label{eq:second_og}
+  \Omega\cot{\Omega T}=\Gamma(\Gamma-1)+\Omega^2
+\end{equation}
+the above equation can be solved for real $\Gamma$ when
+\begin{equation}
+  \label{eq:second_og_delta}
+  \Delta=1-4\Omega(\Omega-\cot(\Omega T))\ge 0
+\end{equation}
+or equivalently for $\Omega\gg 1$
+\begin{equation}
+  \cot(\Omega T)\ge\Omega
+\end{equation}
+
+It can be easily seen (by assuming $\Omega T=n\pi+\epsilon_n$,
+$\epsilon_n\ll 1$) that \eqref{eq:second_og_delta} is fulfilled when
+$\Omega\in[n\pi/T,n\pi/T+\epsilon_n]$, where
+$\epsilon_n=(\sqrt{n^2\pi^2+4T}-n\pi)/2\rightarrow T/n\pi$, hence
+$\Omega\rightarrow n\pi/T+\mathcal{O}(1/n)$. Substituting $\Omega
+T=n\pi+\epsilon$ to \eqref{eq:second_og_delta} we get
+\begin{align}
+  \label{eq:second_og_delta_e}
+  \Delta&=4\frac{n\pi}{T}\big(\frac{1}{\epsilon}-\frac{n\pi}{T}),\\
+  \Gamma_\pm&=\frac{1}{2}(1\pm\sqrt{\Delta}).
+\end{align}
+From \eqref{eq:g_ineq} we know that $\Gamma<1/2$ and so
+\begin{align}
+  \Gamma&=\frac{1}{2}(1-\sqrt{\Delta})\\
+  \Delta=(1-2\Gamma)^2
+\end{align}
+
+% Equation
+% \begin{gather}\label{eq:beta}
+%   \frac{\beta}{\beta+1}=e^{\beta T}
+% \end{gather}
+% defines the discrete set $A=\{\beta_i\}$ with elements $\beta_i$ being
+% solutions to \eqref{eq:beta}. It is easy to notice that if $\beta_i$
+% is in $A$ then $\bar{\beta_i}$ also is in $A$. From now on we shall
+% utilize this symmetry by writting $\beta_{-i}=\bar{\beta_i}$. As in
+% the previous paragraph we will name the real and imaginary part of
+% $\beta_i$ the $-\Gamma_i$ and $\Omega_i$ respectively.
+
+
 
 \subsection{Energy}
 The energy of the whole string is given by the functional
@@ -287,5 +330,29 @@ we can write that for large times we have
 %   \hat{g_{n+1}}(\omega')=\hat{g_n}(\omega')\frac{i\omega'}{1+i\omega'}+
 %   \frac{1}{2\pi}\int_{\mathbb{R}}\hat{g_n}(\omega)\frac{e^{i\omega T}-e^{-T-iT(\omega'-\omega)}}{1+i\omega'}
 % \end{gather}
+
+\section{Notes}
+
+\subsection{Scalar product}
+
+Scalar product is the standard scalar product for
+$L^2([0,T])$. Orthogonal Fourier basis is given by
+\begin{equation}
+  \label{eq:fourier_base}
+  \phi_n(x)=e^{2 i x n \pi/T}=e^{\omega_n x}
+\end{equation}
+as well as the eigenfunctions of $L$.
+\begin{equation}
+  g_n(x)=e^{ \beta_n x}
+\end{equation}
+The following quantities can be calculated
+\begin{equation}
+  (e^{\beta x},e^{\omega x})=
+  \begin{cases}
+    T & \bar\beta+\omega=0 \\
+    \frac{1}{\bar{\beta}+\omega}\big(e^{(\bar\beta+\omega)t}-1\big)         & \bar\beta+\omega\ne0
+  \end{cases}
+\end{equation}
+
 
 \end{document}
