@@ -184,49 +184,6 @@ parametrization will become clear later.
   % \pm(\frac{1}{\sqrt{2 T}}\eta-\frac{2+T}{2\sqrt{2T}}\frac{1}{\eta}+\mathcal{O}(\eta^{-3})),\\
   \beta&=\pm i(\frac{\pi}{T}\eta-2(2+T)\pi\frac{1}{\eta})-\frac{T}{2\pi^2\eta^2}+\mathcal{O}(\eta^{-3})
 \end{align}
-We should now calculate $g(t)=(L^n h_0)(t-nT)$ for
-\begin{gather}
-  h_0(t)=\sum_\lambda a_\lambda g_\lambda(t).
-\end{gather}
-We have
-\begin{gather}
-  (L^n h_0)(t)=\sum_\lambda \lambda^n a_\lambda g_\lambda(t).
-\end{gather}
-Utilizing quantization condition for $\lambda$ we obtain
-\begin{gather}\label{eq:series}
-  (L^n h_0)(t) =\sum_\lambda a_\lambda e^{\frac{\lambda}{\lambda+1}(t+nT)}
-\end{gather}
-Inserting the \eqref{eq:qmparam} to \eqref{eq:series} yields
-\begin{gather}
-  \begin{split}
-    (L^n h_0)(t-nT) &=\sum_\eta a_{\lambda(\eta)} e^{\beta(\eta)t}\\
-    &\approx \int_{\eta_0}^\infty a_{\lambda(\eta)}\exp((ib\eta-\frac{ic}{\eta}-\frac{1}{\eta^2})t)d\eta
-  \end{split}
-\end{gather}
-The remaining problem is the asymptotic form of $a_{\lambda}$ for
-reasonable initial data (which cannot be simply computed using scalar
-product, because eigenvectors are not orthogonal in their current
-form) and integration of the above integral to get energy leak in time
-(see \eqref{eq:enleak}). The integration should be doable using the
-method of steepest descent or some other method for highly oscillatory
-integrands assuming $t\gg 1$. After this the asymptotic expansion in
-time should be easily obtained, and so the energy leak.
-
-% The integration can be done using the method
-% of steepest descent after expanding functions under the integrand as
-% asymptotic series for $t$. Namely introducing the substitutions
-% $f(\eta)=f(\eta_0)-w^2$, where $\eta_0$ is an appropriately chosen
-% saddle point, calculating $\eta(w)$ and $d\eta=\frac{d\eta(w)}{dw}dw$
-% as well as $a_{\lambda(\eta)}$, expanding
-% $a_{\lambda(\eta)}\frac{d\eta}{dw}$ as a series in time obtaining the
-% series of integrals which one shall then calculate term by term. The
-% cructial point is that calculation of integrals is not necessary to
-% obtain the leading term of time dependancy.
-
-
-% We are looking for $(L^ng_0)$ for $n\rightarrow\infty$.
-
-\subsection{Eigenvalues of $L$}
 
 Second equation for $\Omega$ and $\Gamma$ is given by
 \begin{equation}
@@ -254,13 +211,70 @@ T=n\pi+\epsilon$ to \eqref{eq:second_og_delta} we get
   \Delta&=4\frac{n\pi}{T}\big(\frac{1}{\epsilon}-\frac{n\pi}{T}),\\
   \Gamma_\pm&=\frac{1}{2}(1\pm\sqrt{\Delta}).
 \end{align}
-From \eqref{eq:g_ineq} we know that $\Gamma<1/2$ and so
-\begin{align}
-  \Gamma&=\frac{1}{2}(1-\sqrt{\Delta})\\
-  \Delta=(1-2\Gamma)^2
-\end{align}
+Up to this point we assumed $\Omega>0$, but the same reasoning can be
+used for $\Omega<0$ giving the same asymptotic relation (which is also
+a consequence of the fact, that if $\beta$ fulfills the
+\eqref{eq:second_og} then also $\bar\beta$ does). Now the meaning of
+the parametrization in \eqref{eq:qmparam} becomes clear, $\beta(\eta)$
+should be the solution of the \eqref{eq:second_og} for
+$\eta\in\mathbb{Z}$.
 
-% Equation
+% TODO: Proof of the sentence above!
+% TODO: Plots of both equations!
+% TODO: Relations for Omega ~ 0
+
+Substituting $\Omega=0$ to the \eqref{eq:second_og} we get
+\begin{equation}
+  \label{eq:omega0}
+  \frac{\Gamma}{\Gamma-1}=e^{-\Gamma T},
+\end{equation}
+which is the equation definig $\Gamma_{max}$, it is easy to check that
+it has a solution and the solution is unique (by analysing
+$T(\Gamma)$).
+
+% TODO: Plot of T(Gamma)
+
+
+\subsection{Iterations of $L$}
+
+We should now calculate $g(t)=(L^n h_0)(t-nT)$ for
+\begin{gather}
+  h_0(t)=\sum_\lambda a_\lambda g_\lambda(t).
+\end{gather}
+We have
+\begin{gather}
+  (L^n h_0)(t)=\sum_\lambda \lambda^n a_\lambda g_\lambda(t).
+\end{gather}
+Utilizing quantization condition for $\lambda$ we obtain
+\begin{align}\label{eq:series}
+  (L^n h_0)(t) =&\sum_\lambda a_\lambda e^{\frac{\lambda}{\lambda+1}(t+nT)}=\\
+  &\sum_\beta a_{\lambda(\beta)}e^{\beta(t+nT)}
+  \end{align}
+Inserting the \eqref{eq:qmparam} to \eqref{eq:series} yields
+\begin{gather}
+  \begin{split}
+    (L^n h_0)(t-nT) &=\sum_\eta a_{\lambda(\eta)} e^{\beta(\eta)t}\\
+    &\approx \int_{-\infty}^\infty a_{\lambda(\eta)}\exp((ib\eta-\frac{ic}{\eta}-\frac{1}{\eta^2})t)d\eta
+  \end{split}
+\end{gather}
+The remaining problem is the asymptotic form of $a_{\lambda}$ for
+reasonable initial data (which cannot be simply computed using scalar
+product, because eigenvectors are not orthogonal in their current
+form) and integration of the above integral to get energy leak in time
+(see \eqref{eq:enleak}). The integration should be doable using the
+method of steepest descent or some other method for highly oscillatory
+integrands assuming $t\gg 1$. After this the asymptotic expansion in
+time should be easily obtained, and so the energy leak.
+
+% We are looking for $(L^ng_0)$ for $n\rightarrow\infty$.
+
+% From \eqref{eq:g_ineq} we know that $\Gamma<1/2$ and so
+% \begin{align}
+%   \Gamma&=\frac{1}{2}(1-\sqrt{\Delta})\\
+%   \Delta=(1-2\Gamma)^2
+% \end{align}
+
+% equation
 % \begin{gather}\label{eq:beta}
 %   \frac{\beta}{\beta+1}=e^{\beta T}
 % \end{gather}
@@ -275,41 +289,50 @@ From \eqref{eq:g_ineq} we know that $\Gamma<1/2$ and so
 
 \subsection{Energy}
 The energy of the whole string is given by the functional
-\begin{gather}
+\begin{align}
   \begin{split}
     E(\psi)&=\frac{1}{2}\int_0^\infty dx ((1+\delta(x-L))\psi_t^2+\psi_x^2)\\
     &=\frac{1}{2}\int_0^L dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\int_L^\infty dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\psi_t^2\bigg|_{x=L}\\
     &=E_{in}(\psi)+E_{esc}(\psi)
-  \end{split}\\
-  E_{in}(\psi)=\frac{1}{2}\int_0^L dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\psi_t^2\bigg|_{x=L}\\
-  E_{esc}(\psi)=\frac{1}{2}\int_L^\infty dx(\psi_t^2+\psi_x^2)
-\end{gather}
-% The whole energy of the string is conserved so it is enough to find
-% $E_{esc}(\psi)$. Using the relations \eqref{eq:ansatz0} and
-% \eqref{eq:cont0} and \eqref{eq:dde} we obtain
+  \end{split}
+\end{align}
+with
+\begin{align}
+  &E_{in}(\psi)=\frac{1}{2}\int_0^L dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\psi_t^2\bigg|_{x=L}\\
+  &E_{esc}(\psi)=\frac{1}{2}\int_L^\infty dx(\psi_t^2+\psi_x^2)
+\end{align}.
+
+The energy is conserved, thus
+\begin{align}
+  \partial_t E_{in}(\psi)=-\partial_t E_{out}(\psi),
+\end{align}
+so it is enough to calculate only outgoing energy
+\begin{align}
+  \partial_t E_{in}(\psi)=&-\partial_t E_{out}(\psi)=-\int_L^\infty dx(\partial_x(\psi_t\psi_x))\\
+  =&\psi_x\psi_t\big|_{x=L+}\\
+  =&-h'(L-t)^2=-(g'(t-L)-g'(t+L))^2=-g(t+L)^2.
+\end{align}
+After the cosmetic shift in time we get
+\begin{align}
+  \partial_t E_{in}(\psi)\approx -g(t)^2
+\end{align}
+
 % \begin{gather}
-%   \begin{split}
-%     E_{esc}(\psi)&=\int_L^\infty dx((g'(t-x+T)-g'(t-x))^2=\int_L^\infty dx(g(t-x+T))^2=\\
-%     &=\sum_{n=0}^\infty\int_{L+nT}^{L+nT+T}dx(g(t-x+T))^2=\\
-%     &=\sum_{n=0}^\infty
+%   \begin{split}\label{eq:enleak}
+%     \partial_t E_{in}(\psi)&=\int_0^L(\partial_x(\psi_t\psi_x))+\psi_{tt}\psi_t\bigg|_{x=L}=\\
+%     &=(\psi_x+\psi_{tt})\psi_t\bigg|_{x=L}=\\
+%     &=(g'(t-L)+g'(t+L)-g''(t-L)+g''(t+L))(g'(t+L)-g'(t-L))\\
+%     &=(g'(t-L)+g'(t+L)-g'(t+L))(g'(t+L)-g'(t-L))\\
+%     &=-g'(t-L)g(t+L)\\
+%     &=-(g'(t+L)+g(t+L))g(t+L)\\
+%     &=-\frac{1}{2}\partial_tg(t+L)^2-g(t+L)^2
 %   \end{split}
 % \end{gather}
-\begin{gather}
-  \begin{split}\label{eq:enleak}
-    \partial_t E_{in}(\psi)&=\int_0^L(\partial_x(\psi_t\psi_x))+\psi_{tt}\psi_t\bigg|_{x=L}=\\
-    &=(\psi_x+\psi_{tt})\psi_t\bigg|_{x=L}=\\
-    &=(g'(t-L)+g'(t+L)-g''(t-L)+g''(t+L))(g'(t+L)-g'(t-L))\\
-    &=(g'(t-L)+g'(t+L)-g'(t+L))(g'(t+L)-g'(t-L))\\
-    &=-g'(t-L)g(t+L)\\
-    &=-(g'(t+L)+g(t+L))g(t+L)\\
-    &=-\frac{1}{2}\partial_tg(t+L)^2-g(t+L)^2
-  \end{split}
-\end{gather}
-So the highest order dependency on $t$ will be the $g(t+L)^2$ term (assuming $g\sim t^{-\alpha}$), so
-we can write that for large times we have
-\begin{gather}
-  \partial_t E_{in}(\psi)\sim~-g^2(t+L)<0
-\end{gather}
+% So the highest order dependency on $t$ will be the $g(t+L)^2$ term (assuming $g\sim t^{-\alpha}$), so
+% we can write that for large times we have
+% \begin{gather}
+%   \partial_t E_{in}(\psi)\sim~-g^2(t+L)<0
+% \end{gather}
 
 % Substituting
 % \begin{gather}
@@ -339,7 +362,7 @@ Scalar product is the standard scalar product for
 $L^2([0,T])$. Orthogonal Fourier basis is given by
 \begin{equation}
   \label{eq:fourier_base}
-  \phi_n(x)=e^{2 i x n \pi/T}=e^{\omega_n x}
+  \phi_n(x)=e^{i x n \pi/T}=e^{\omega_n x}
 \end{equation}
 as well as the eigenfunctions of $L$.
 \begin{equation}
