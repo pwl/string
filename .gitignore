@@ -1,1 +1,5 @@
 _region_*
+string.prv*
+*.aux
+*.log
+*.out
