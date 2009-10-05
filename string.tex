@@ -249,10 +249,10 @@ Utilizing quantization condition for $\lambda$ we obtain
   &\sum_\beta a_{\lambda(\beta)}e^{\beta(t+nT)}
   \end{align}
 Inserting the \eqref{eq:qmparam} to \eqref{eq:series} yields
-\begin{gather}
+\begin{gather}\label{eq:nthfold}
   \begin{split}
     (L^n h_0)(t-nT) &=\sum_\eta a_{\lambda(\eta)} e^{\beta(\eta)t}\\
-    &\approx \int_{-\eta_0}^\infty a_{\lambda(\eta)}\exp((ib\eta-\frac{ic}{\eta}-\frac{1}{\eta^2})t)d\eta+c.c.
+    &\approx \int_{\eta_0}^\infty a_{\lambda(\eta)}\exp((ib\eta-\frac{ic}{\eta}-\frac{1}{\eta^2})t)d\eta+c.c.
   \end{split}
 \end{gather}
 The remaining problem is the asymptotic form of $a_{\lambda}$ for
@@ -289,15 +289,15 @@ time should be easily obtained, and so the energy leak.
 The energy of the whole string is given by the functional
 \begin{align}
   \begin{split}
-    E(\psi)&=\frac{1}{2}\int_0^\infty dx ((1+\delta(x-L))\psi_t^2+\psi_x^2)\\
-    &=\frac{1}{2}\int_0^L dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\int_L^\infty dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\psi_t^2\bigg|_{x=L}\\
+    E(\psi)&=\frac{1}{2}\int_0^\infty dx (2(1+\delta(x-L))\psi_t^2+\psi_x^2)\\
+    &=\frac{1}{2}\int_0^L dx(2\psi_t^2+\psi_x^2)+\frac{1}{2}\int_L^\infty dx(2\psi_t^2+\psi_x^2)+\psi_t^2\bigg|_{x=L}\\
     &=E_{in}(\psi)+E_{esc}(\psi)
   \end{split}
 \end{align}
 with
 \begin{align}
-  &E_{in}(\psi)=\frac{1}{2}\int_0^L dx(\psi_t^2+\psi_x^2)+\frac{1}{2}\psi_t^2\bigg|_{x=L}\\
-  &E_{esc}(\psi)=\frac{1}{2}\int_L^\infty dx(\psi_t^2+\psi_x^2)
+  &E_{in}(\psi)=\frac{1}{2}\int_0^L dx(2\psi_t^2+\psi_x^2)+\psi_t^2\bigg|_{x=L}\\
+  &E_{esc}(\psi)=\frac{1}{2}\int_L^\infty dx(2\psi_t^2+\psi_x^2)
 \end{align}.
 
 The energy is conserved, thus
@@ -375,5 +375,45 @@ The following quantities can be calculated
   \end{cases}
 \end{equation}
 
+\subsection{Asymptotic form of energy}
+
+
+The energy can be approximated as follows. First we define
+\begin{align}
+  I(t):=\int_a^\infty e^{a(x,t)}e^{itx}dx.
+\end{align}
+The above function can be expanded to finite series by repetitively
+applying integration by parts
+\begin{align}
+  I(t)&=e^{ita}\sum_{n=0}^N\frac{d^n}{dx^n}\bigg|_{x=a}e^{a(x,t)} \left(\frac{i}{t}\right)^{n+1}+\epsilon_{N+1}(t),\\
+  \epsilon_{N}(t)&=\left(\frac{i}{t}\right)^{N}\int_a^\infty \frac{d^{N}}{dx^{N}}\bigg|_{x=a}e^{a(x,t)}e^{itx}dx
+\end{align}
+N can be set to infinity if $\epsilon_N=O(x^{-N-1})$, which is true if
+$\frac{d^{N}}{dx^{N}}\bigg|_{x=a}e^{a(x,t)}=O(x^{-1-\delta})$ for
+$\delta>0$. If this is true we can write
+\begin{align}
+  I(t)=e^{ita}\sum_{n=0}^\infty\frac{d^n}{dx^n}\bigg|_{x=a}e^{a(x,t)} \left(\frac{i}{t}\right)^{n+1}.
+\end{align}
+From now on we assume $\partial_x a(x,t)>>1$. Using the identity for
+$n$-th derivative of function composition
+\begin{align}
+  \frac{d^n}{dx^n}\bigg|_{x=x_0}e^{f(x)}=B_n(f'(x_0),...,f^{(n)}(x_0))e^{f(x)}
+\end{align}
+and the asymptotic form of Bell polynomials
+\begin{align}
+  B_n(x_1,...,x_n) = x_1^n + O(x_i^{n-1})
+\end{align}
+we can further simplify the formula for $I(t)$
+\begin{align}
+  I(t)&=e^{ita}e^{a(a,t)}\frac{i}{t}\sum_{n=0}^\infty \left(\frac{ia'(a,t)}{t}\right)^{n}\\
+  &=e^{ita}e^{a(a,t)}\frac{i}{t-ia'(a,t)}.
+\end{align}
+
+In the case of \eqref{eq:nthfold} after suitable change of variables we get
+\begin{align}
+  \log(|g(t)|^2)\sim A-Bt-2\log t.
+\end{align}
+where $A$ is depends of initial value of $g(t)$, but $B$ does not (at
+least for large times).
 
 \end{document}

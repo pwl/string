@@ -3,3 +3,7 @@ string.prv*
 *.aux
 *.log
 *.out
+Results/*
+*.mx
+*.nb
+*.tgz
