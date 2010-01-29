@@ -39,7 +39,7 @@ which after the substitutions
 \end{gather}
 becomes
 \begin{gather}
-  \label{eq:wave0}
+  \label{eq:wave1}
   (1+\delta(x-L))\partial_{tt}\psi=\frac{1}{2}\partial_{xx}\psi,
 \end{gather}
 with primes omitted, so the problem has one parameter (which can be
@@ -62,7 +62,7 @@ with conditions
 \end{gather}
 which become
 \begin{gather}
-  \label{eq:ansatz0}
+  \label{eq:ansatz1}
   \psi(x,t)=
   \begin{cases}
     -g(t-x)+g(x+t) & x\in[0,L] \\
@@ -216,7 +216,7 @@ used for $\Omega<0$ giving the same asymptotic relation (which is also
 a consequence of the fact, that if $\beta$ fulfills the
 \eqref{eq:second_og} then also $\bar\beta$ does). Now the meaning of
 the parametrization in \eqref{eq:qmparam} becomes clear, $\beta(\eta)$
-should be the solution of the \eqref{eq:second_og} for
+should approximate the solution of the \eqref{eq:second_og} for
 $\eta\in\mathbb{Z}$.
 
 % TODO: Proof of the sentence above!
@@ -305,7 +305,7 @@ The energy is conserved, thus
   \partial_t E_{in}(\psi)=-\partial_t E_{out}(\psi),
 \end{align}
 so it is enough to calculate only outgoing energy
-\begin{align}
+\begin{align}\label{eq:enleak}
   \partial_t E_{in}(\psi)=&-\partial_t E_{out}(\psi)=-\int_L^\infty dx(\partial_x(\psi_t\psi_x))\\
   =&\psi_x\psi_t\big|_{x=L+}\\
   =&-h'(L-t)^2=-(g'(t-L)-g'(t+L))^2=-g(t+L)^2.
@@ -316,7 +316,7 @@ After the cosmetic shift in time we get
 \end{align}
 
 % \begin{gather}
-%   \begin{split}\label{eq:enleak}
+%   \begin{split}
 %     \partial_t E_{in}(\psi)&=\int_0^L(\partial_x(\psi_t\psi_x))+\psi_{tt}\psi_t\bigg|_{x=L}=\\
 %     &=(\psi_x+\psi_{tt})\psi_t\bigg|_{x=L}=\\
 %     &=(g'(t-L)+g'(t+L)-g''(t-L)+g''(t+L))(g'(t+L)-g'(t-L))\\
@@ -386,7 +386,7 @@ The above function can be expanded to finite series by repetitively
 applying integration by parts
 \begin{align}
   I(t)&=e^{ita}\sum_{n=0}^N\frac{d^n}{dx^n}\bigg|_{x=a}e^{a(x,t)} \left(\frac{i}{t}\right)^{n+1}+\epsilon_{N+1}(t),\\
-  \epsilon_{N}(t)&=\left(\frac{i}{t}\right)^{N}\int_a^\infty \frac{d^{N}}{dx^{N}}\bigg|_{x=a}e^{a(x,t)}e^{itx}dx
+  \epsilon_{N}(t)&=\left(\frac{i}{t}\right)^{N}\int_a^\infty \frac{d^{N}}{dx^{N}}e^{a(x,t)}e^{itx}dx
 \end{align}
 N can be set to infinity if $\epsilon_N=O(x^{-N-1})$, which is true if
 $\frac{d^{N}}{dx^{N}}\bigg|_{x=a}e^{a(x,t)}=O(x^{-1-\delta})$ for
@@ -401,7 +401,7 @@ $n$-th derivative of function composition
 \end{align}
 and the asymptotic form of Bell polynomials
 \begin{align}
-  B_n(x_1,...,x_n) = x_1^n + O(x_i^{n-1})
+  B_n(x_1,...,x_n) = x_1^n + \frac{n(n-1)}{2}x_1^{n-2}x_2+O(x_i^{n-2})
 \end{align}
 we can further simplify the formula for $I(t)$
 \begin{align}

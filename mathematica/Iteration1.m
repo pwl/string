@@ -32,7 +32,7 @@ precision and folding decreases accuracy of the coefficients in the
 exponential rate, see Plots/Error). The numerical error for other T is
 not known yet *)
 
-tmin=0;tmax=350;dt=1;
+tmin=0;tmax=284;dt=1;
 testPoints=Range[tmin,tmax,dt];
 testPointsRandom=NestList[#+Random[Real,{0.,1.}]&,tmin,Floor[2*tmax]];
 
@@ -157,7 +157,7 @@ FillUp[f_,T_,nmax_]:=Module[{g=Evaluate[f[#]]&},
 			    Print["Reading file ",FuncFileName[g,T]];
 			    Get[FuncFileName[g,T]];
 			    LFold[g,T,nmax];
-			    (* TestPointExportValues[g,T,testPointsRandom]; *)
+			    TestPointExportValues[g,T,testPointsRandom];
 			   ]
 
 Repair[g_,T_,nmax_]:=Module[{},

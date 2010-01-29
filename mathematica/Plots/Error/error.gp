@@ -5,6 +5,7 @@ set title "Numerical folding vs its error"
 
 set xlabel "Iteration number"
 set ylabel "Log_{10}"
+# set logscale y 10
 
 fit a*x+b "test.dat" via a,b
 
